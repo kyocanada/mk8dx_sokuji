@@ -193,12 +193,12 @@ window.addEventListener('load', function(){
   document.getElementById('reset-button').onclick = () => {
     if (isOverlay) {
       my_alert({
-        title: '入力内容のリセット',
-        message: '順位テーブルと点数補正をリセットします。よろしいですか？',
+        title: 'Reset entries',
+        message: 'Reset all positions?',
         ok: reset
       });
     } else {
-      if (window.confirm('順位テーブルと点数補正をリセットします。よろしいですか？')) {
+      if (window.confirm('Reset all positions?')) {
         reset();
       }
     }
@@ -270,7 +270,7 @@ function initConfigElements() {
           if (overlayWindow) {
             overlayWindow.close();
           }
-          return '本当に他のページに移動しますか?';
+          return 'Leaving?';
         };
       }
     }
@@ -938,7 +938,7 @@ function makeInputRankTable() {
       var selector = '.pasted-image-cell.race-' + race + ' img';
       var targetImg = document.querySelector(selector);
       if (isCalculating) {
-        notifyFooter('計算中のプロセスがあります。');
+        notifyFooter('Wait for process');
         return;
       }
       isCalculating = true;
@@ -1806,7 +1806,7 @@ function createTallyText(sortedScoreObjects, lastCourseStr, leftRace) {
           $dif.innerText = parseSignedNum(sortedScoreObjects[i].totalScore - sortedScoreObjects[i + 1].totalScore);
         });
         $container.querySelectorAll('.left-race').forEach(($race, i) => {
-          const baseText = queries.race_left_str_short ? decodeURIComponent(queries.race_left_str_short) : '残EndsIn__num__';
+          const baseText = queries.race_left_str_short ? decodeURIComponent(queries.race_left_str_short) : 'EndsIn:__num__';
           $race.innerText = baseText.replace('__num__', leftRace);
         });
       }
